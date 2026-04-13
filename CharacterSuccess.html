@@ -1,33 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Character Saved</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Character Success</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8">
-        <div class="card text-center">
-          <div class="card-body p-4 p-md-5">
-            <div class="alert alert-success" role="alert">
-              Character created successfully.
-            </div>
+  <div class="container py-4 py-lg-5 app-shell">
+    <header class="topbar rounded-5 px-3 px-lg-4 py-3 mb-4 mb-lg-5">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <div class="brand-mark">CP</div>
+          <div>
+            <p class="text-uppercase small mb-1 text-secondary">Campaign Forge</p>
+            <h1 class="h3 mb-0">Success</h1>
+          </div>
+        </div>
+        <ul class="nav nav-pills flex-wrap gap-2 small">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="Play.html">Play</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="CharacterSuccess.html">Character</a></li>
+          <li class="nav-item"><a class="nav-link" href="Campaign.html">Campaign</a></li>
+          <li class="nav-item"><a class="nav-link" href="Customize.html">Customize</a></li>
+          <li class="nav-item"><a class="nav-link" href="Library.html">Library</a></li>
+          <li class="nav-item"><a class="nav-link" href="Account.html">Account</a></li>
+        </ul>
+      </div>
+    </header>
 
-            <h1 class="h2 mb-3">Your character has been saved.</h1>
-            <p class="text-body-secondary mb-4">You can go back to the character page, make another character, or return home.</p>
-
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="CharacterPage.html" class="btn btn-primary">Go to Character Page</a>
-              <a href="CharacterCreation.html" class="btn btn-outline-secondary">Create Another Character</a>
-              <a href="index.html" class="btn btn-outline-dark">Return Home</a>
-            </div>
+    <section class="page-hero p-4 p-lg-5 mb-4 mb-lg-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+          <p class="text-uppercase small mb-2">Character Saved</p>
+          <h2 class="display-5 fw-semibold mb-3">Your new hero has been added successfully.</h2>
+          <p class="helper-text mb-0">
+            The build is complete and ready to return to your roster or begin another creation flow.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div class="info-card p-4 text-dark">
+            <p class="text-uppercase small text-secondary mb-2">Next Step</p>
+            <h3 class="h4 mb-3">Where would you like to go?</h3>
+            <p class="text-secondary mb-0">Return to the character page, start another build, or head back to the overview page.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="status-card p-4 p-lg-5 text-center">
+      <div class="status-icon mx-auto mb-4">✓</div>
+      <h2 class="h1 mb-3">Character Created</h2>
+      <p class="text-secondary fs-5 mb-4">
+        Your character has been saved to the library and is now part of your active roster.
+      </p>
+      <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+        <a href="CharacterPage.html" class="btn btn-primary btn-lg">Return to Character Page</a>
+        <a href="CharacterCreation.html" class="btn btn-outline-secondary btn-lg">Create Another Character</a>
+        <a href="index.html" class="btn btn-dark btn-lg">Back to Home</a>
+      </div>
+    </section>
   </div>
 </body>
 </html>
