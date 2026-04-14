@@ -27,4 +27,8 @@ The AI helped me understand how to properly structure HTML files and reuse compo
 
 ## 5. Live Site Link
 *Provide the GitHub Pages link to the specific page(s) you built.*
-* **Live URL:** [Insert Link Here]
+* **Live URL:** 
+https://vcu-257.github.io/ugly-build-with-bootstrap-group-13/index.html
+https://vcu-257.github.io/ugly-build-with-bootstrap-group-13/Play.html
+https://vcu-257.github.io/ugly-build-with-bootstrap-group-13/Customize.html
+https://vcu-257.github.io/ugly-build-with-bootstrap-group-13/Library.html
