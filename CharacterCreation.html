@@ -36,7 +36,7 @@
           <p class="text-uppercase small mb-2">Character Builder</p>
           <h2 class="display-5 fw-semibold mb-3">Forge a new hero for your next adventure.</h2>
           <p class="helper-text mb-0">
-            Fill out the builder below to create a fresh character without interrupting your existing library flow.
+            Fill out the builder below to create a fresh character without interrupting your existing library flow. Complete all required fields before saving.
           </p>
         </div>
         <div class="col-lg-4">
@@ -51,19 +51,21 @@
       </div>
     </section>
 
-    <form action="CharacterSuccess.html">
+    <form id="characterForm" action="CharacterSuccess.html">
+      <div id="formMessage" class="alert d-none mb-4" role="alert"></div>
+
       <div class="builder-card mb-4">
         <div class="card-header px-4 py-3">Character Basics</div>
         <div class="card-body p-4">
           <div class="row g-3">
             <div class="col-md-6">
               <label for="characterName" class="form-label">Character Name</label>
-              <input type="text" class="form-control" id="characterName" placeholder="Gutter Saint">
+              <input type="text" class="form-control" id="characterName" placeholder="Gutter Saint" required>
             </div>
             <div class="col-md-6">
               <label for="className" class="form-label">Class</label>
-              <select id="className" class="form-select">
-                <option selected>Choose a class</option>
+              <select id="className" class="form-select" required>
+                <option value="" selected disabled>Choose a class</option>
                 <option>Fanged Deserter</option>
                 <option>Gutterborn Scum</option>
                 <option>Esoteric Hermit</option>
@@ -72,15 +74,16 @@
             </div>
             <div class="col-md-4">
               <label for="homeland" class="form-label">Origin</label>
-              <input type="text" class="form-control" id="homeland" placeholder="Bergen Chrypt">
+              <input type="text" class="form-control" id="homeland" placeholder="Bergen Chrypt" required>
             </div>
             <div class="col-md-4">
               <label for="trait" class="form-label">Notable Trait</label>
-              <input type="text" class="form-control" id="trait" placeholder="Nervous eyes">
+              <input type="text" class="form-control" id="trait" placeholder="Nervous eyes" required>
             </div>
             <div class="col-md-4">
               <label for="omen" class="form-label">Omen</label>
-              <input type="number" class="form-control" id="omen" placeholder="2">
+              <small class="text-muted d-block mb-1">Optional</small>
+              <input type="number" class="form-control" id="omen" placeholder="0">
             </div>
           </div>
         </div>
@@ -92,84 +95,19 @@
           <div class="row g-3">
             <div class="col-sm-6 col-lg-3">
               <label for="strength" class="form-label">Strength</label>
-              <input type="number" class="form-control" id="strength" placeholder="0">
+              <input type="number" class="form-control" id="strength" placeholder="0" required>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="agility" class="form-label">Agility</label>
-              <input type="number" class="form-control" id="agility" placeholder="0">
+              <input type="number" class="form-control" id="agility" placeholder="0"required>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="presence" class="form-label">Presence</label>
-              <input type="number" class="form-control" id="presence" placeholder="0">
+              <input type="number" class="form-control" id="presence" placeholder="0" required>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="toughness" class="form-label">Toughness</label>
-              <input type="number" class="form-control" id="toughness" placeholder="0">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="builder-card mb-4">
-        <div class="card-header px-4 py-3">Combat and Survival</div>
-        <div class="card-body p-4">
-          <div class="row g-3">
-            <div class="col-md-3">
-              <label for="hp" class="form-label">Hit Points</label>
-              <input type="number" class="form-control" id="hp" placeholder="8">
-            </div>
-            <div class="col-md-3">
-              <label for="glitched" class="form-label">Glitched</label>
-              <input type="number" class="form-control" id="glitched" placeholder="0">
-            </div>
-            <div class="col-md-3">
-              <label for="armor" class="form-label">Armor Tier</label>
-              <select id="armor" class="form-select">
-                <option selected>None</option>
-                <option>Light</option>
-                <option>Medium</option>
-                <option>Heavy</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label for="silver" class="form-label">Silver</label>
-              <input type="number" class="form-control" id="silver" placeholder="30">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="builder-card mb-4">
-        <div class="card-header px-4 py-3">Equipment</div>
-        <div class="card-body p-4">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="weapon" class="form-label">Primary Weapon</label>
-              <input type="text" class="form-control" id="weapon" placeholder="Rusty blade">
-            </div>
-            <div class="col-md-6">
-              <label for="armorNotes" class="form-label">Armor or Protection</label>
-              <input type="text" class="form-control" id="armorNotes" placeholder="Rotting mail">
-            </div>
-            <div class="col-12">
-              <label for="inventory" class="form-label">Starting Inventory</label>
-              <textarea class="form-control" id="inventory" rows="4" placeholder="Torches, rope, teeth, and a bad decision."></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="builder-card mb-4">
-        <div class="card-header px-4 py-3">Miserable Details</div>
-        <div class="card-body p-4">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="quirk" class="form-label">Quirk</label>
-              <textarea class="form-control" id="quirk" rows="3" placeholder="Describe what makes this character strange."></textarea>
-            </div>
-            <div class="col-md-6">
-              <label for="background" class="form-label">Dark Background</label>
-              <textarea class="form-control" id="background" rows="3" placeholder="Write a short backstory."></textarea>
+              <input type="number" class="form-control" id="toughness" placeholder="0" required>
             </div>
           </div>
         </div>
@@ -181,5 +119,22 @@
       </div>
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById("characterForm");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+
+        formMessage.textContent = "Please complete all required fields before saving your character.";
+        formMessage.classList.remove("d-none", "alert-success");
+        formMessage.classList.add("alert-danger");
+
+        form.reportValidity();
+      }
+    });
+  </script>
 </body>
 </html>

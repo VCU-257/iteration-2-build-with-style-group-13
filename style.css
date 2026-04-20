@@ -1,8 +1,8 @@
 :root {
   --page-bg: #f3ede5;
   --panel-bg: rgba(255, 251, 247, 0.94);
-  --accent: #c45a2b;
-  --accent-dark: #8f3d18;
+  --accent: #B14F24;
+  --accent-dark: #8A3E1C;
   --ink: #221d1a;
   --muted: #746a63;
   --border: #dccfc1;
@@ -77,14 +77,14 @@ body {
 .hero .lead-copy,
 .page-hero .lead-copy,
 .helper-text {
-  color: rgba(255, 248, 241, 0.86);
+  color: #ffffff;
   font-size: 1.1rem;
   line-height: 1.7;
 }
 
 .quote-text {
   font-size: 1.05rem;
-  color: rgba(255, 248, 241, 0.78);
+  color: #ffffff;
 }
 
 .metric {
@@ -181,13 +181,14 @@ textarea:focus {
 }
 
 .btn-outline-secondary {
-  border-color: var(--border);
-  color: var(--muted);
+  background-color: #FFFBF7;
+  border-color: #dccfc1;
+  color: #221D1A;
 }
 
 .btn-outline-secondary:hover {
   background-color: #efe4da;
-  color: var(--ink);
+  color: #221D1A;
   border-color: #d4c1b1;
 }
 
