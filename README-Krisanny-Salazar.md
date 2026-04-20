@@ -27,3 +27,5 @@ It helped break down the process into smaller steps which in turn reinforced my 
 *Provide the GitHub Pages link to the specific page(s) you built.*
 
 * **Live URL:** 
+Character Page: [https://vcu-257.github.io/iteration-2-build-with-style-group-13/CharacterPage.html]
+Create New Character Page: [https://vcu-257.github.io/iteration-2-build-with-style-group-13/CharacterCreation.html]
