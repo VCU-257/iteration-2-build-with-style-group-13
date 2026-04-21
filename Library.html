@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Library</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Rubik+Mono+One&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -12,7 +15,7 @@
     <header class="topbar rounded-5 px-3 px-lg-4 py-3 mb-4 mb-lg-5">
       <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 justify-content-between">
         <div class="d-flex align-items-center gap-3">
-          <div class="brand-mark">CP</div>
+          <div class="brand-mark">CF</div>
           <div>
             <p class="text-uppercase small mb-1 text-secondary">Campaign Forge</p>
             <h1 class="h3 mb-0">Library</h1>
@@ -32,33 +35,169 @@
 
     <section class="page-hero p-4 p-lg-5 mb-4">
       <p class="text-uppercase small mb-2">Archive</p>
-      <h2 class="display-5 fw-semibold mb-3">Review your saved builds, drafts, and references.</h2>
-      <p class="helper-text mb-0">Use the library to revisit past characters and supporting game content.</p>
+      <h2 class="display-5 fw-semibold mb-3">Rollable tables from the Bare Bones edition.</h2>
+      <p class="helper-text mb-0">Click any tile to browse the full list and roll on it. Pages cited below refer to the MÖRK BORG Bare Bones PDF.</p>
     </section>
 
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="library-card p-4 h-100">
-          <p class="text-uppercase small text-secondary mb-2">Saved Heroes</p>
-          <h3 class="display-6 mb-2">3</h3>
-          <p class="text-secondary mb-0">Play-ready characters stored in your account.</p>
+    <section class="mb-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-3">
+        <div>
+          <p class="text-uppercase small mb-1">Character</p>
+          <h3 class="h4 mb-0">Names, traits, and twisted fates</h3>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="library-card p-4 h-100">
-          <p class="text-uppercase small text-secondary mb-2">Draft Builds</p>
-          <h3 class="display-6 mb-2">1</h3>
-          <p class="text-secondary mb-0">Unfinished builds waiting to be completed.</p>
+      <div class="row g-3" id="libraryCharacter"></div>
+    </section>
+
+    <section class="mb-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-3">
+        <div>
+          <p class="text-uppercase small mb-1">Gear</p>
+          <h3 class="h4 mb-0">Blades, armor, and grim tools</h3>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="library-card p-4 h-100">
-          <p class="text-uppercase small text-secondary mb-2">Resources</p>
-          <h3 class="display-6 mb-2">5</h3>
-          <p class="text-secondary mb-0">Saved notes, references, and supporting content.</p>
+      <div class="row g-3" id="libraryGear"></div>
+    </section>
+
+    <section class="mb-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-3">
+        <div>
+          <p class="text-uppercase small mb-1">World</p>
+          <h3 class="h4 mb-0">Weather, traps, and unholy weight</h3>
+        </div>
+      </div>
+      <div class="row g-3" id="libraryWorld"></div>
+    </section>
+
+    <section class="mb-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-3">
+        <div>
+          <p class="text-uppercase small mb-1">Adventure</p>
+          <h3 class="h4 mb-0">Sparks, contacts, and wandering</h3>
+        </div>
+      </div>
+      <div class="row g-3" id="libraryAdventure"></div>
+    </section>
+  </div>
+
+  <div class="modal fade" id="tableModal" tabindex="-1" aria-labelledby="tableModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="tableModalTitle">Table</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary mb-3" id="tableModalSub"></p>
+          <div class="table-roll-panel">
+            <div class="table-roll-result" id="tableRollResult">
+              <span class="roll-label">Rolled:</span><span id="tableRollText">— click Roll —</span>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" id="tableRollBtn">Roll <span id="tableRollDie"></span></button>
+              <button type="button" class="btn btn-outline-secondary" id="tableClearBtn">Clear</button>
+            </div>
+          </div>
+          <div class="table-list" id="tableList"></div>
         </div>
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const GROUPS = {
+        libraryCharacter: ["names","terrible","broken","bad","tales"],
+        libraryGear:      ["weapons","armor","equipment","occult"],
+        libraryWorld:     ["weather","traps","basilisks","catastrophe","reaction"],
+        libraryAdventure: ["spark","contacts","wander"]
+      };
+
+      function escHtml(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      function buildTile(tableId) {
+        const t = window.MB && window.MB.tables[tableId];
+        if (!t) return "";
+        return ''
+          + '<div class="col-md-6 col-xl-4">'
+          +   '<button type="button" class="library-tile" data-bs-toggle="modal" data-bs-target="#tableModal" data-table="' + escHtml(tableId) + '">'
+          +     '<span class="tile-die">' + escHtml(t.die) + '</span>'
+          +     '<span class="tile-label">' + escHtml(t.title) + '</span>'
+          +     '<span class="tile-sub">' + escHtml(t.sub) + '</span>'
+          +   '</button>'
+          + '</div>';
+      }
+
+      function renderGroups() {
+        Object.keys(GROUPS).forEach(function (containerId) {
+          const el = document.getElementById(containerId);
+          if (!el) return;
+          el.innerHTML = GROUPS[containerId].map(buildTile).join("");
+        });
+      }
+
+      const tableModal = document.getElementById("tableModal");
+      const tableListEl = document.getElementById("tableList");
+      const rollResultEl = document.getElementById("tableRollText");
+      const rollDieEl = document.getElementById("tableRollDie");
+      const rollBtn = document.getElementById("tableRollBtn");
+      const clearBtn = document.getElementById("tableClearBtn");
+      let currentTableId = null;
+
+      function renderTable(tableId) {
+        currentTableId = tableId;
+        const t = window.MB.tables[tableId];
+        if (!t) return;
+        document.getElementById("tableModalTitle").textContent = t.title;
+        document.getElementById("tableModalSub").textContent = t.sub;
+        rollDieEl.textContent = t.die;
+        rollResultEl.textContent = "— click Roll —";
+
+        tableListEl.innerHTML = t.entries.map(function (row, i) {
+          return ''
+            + '<div class="table-list-item" data-row="' + i + '">'
+            +   '<div class="roll-key">' + escHtml(row.key) + '</div>'
+            +   '<div class="roll-entry">' + escHtml(row.entry) + '</div>'
+            + '</div>';
+        }).join("");
+      }
+
+      tableModal.addEventListener("show.bs.modal", function (event) {
+        const btn = event.relatedTarget;
+        if (!btn) return;
+        renderTable(btn.getAttribute("data-table"));
+      });
+
+      rollBtn.addEventListener("click", function () {
+        if (!currentTableId || !window.MB) return;
+        const result = window.MB.rollTable(currentTableId);
+        if (!result) return;
+        // Highlight the rolled row and scroll it into view
+        tableListEl.querySelectorAll(".table-list-item").forEach(function (el) {
+          el.classList.toggle("is-rolled", parseInt(el.getAttribute("data-row"), 10) === result.index);
+        });
+        rollResultEl.textContent = result.entry.key + " — " + result.entry.entry;
+        const rolled = tableListEl.querySelector(".table-list-item.is-rolled");
+        if (rolled) rolled.scrollIntoView({ block: "center", behavior: "smooth" });
+      });
+
+      clearBtn.addEventListener("click", function () {
+        rollResultEl.textContent = "— click Roll —";
+        tableListEl.querySelectorAll(".table-list-item.is-rolled").forEach(function (el) {
+          el.classList.remove("is-rolled");
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", renderGroups);
+    })();
+  </script>
 </body>
 </html>

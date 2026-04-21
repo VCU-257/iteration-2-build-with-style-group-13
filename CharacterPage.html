@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Character Page</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Rubik+Mono+One&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -12,7 +15,7 @@
     <header class="topbar rounded-5 px-3 px-lg-4 py-3 mb-4 mb-lg-5">
       <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 justify-content-between">
         <div class="d-flex align-items-center gap-3">
-          <div class="brand-mark">CP</div>
+          <div class="brand-mark">CF</div>
           <div>
             <p class="text-uppercase small mb-1 text-secondary">Campaign Forge</p>
             <h1 class="h3 mb-0">Character Page</h1>
@@ -41,15 +44,15 @@
           <div class="d-flex flex-wrap gap-3">
             <div class="metric p-3">
               <div class="small text-white-50">Characters</div>
-              <div class="fs-4 fw-semibold">3</div>
+              <div class="fs-4 fw-semibold" id="metricCharacters" data-base="3">3</div>
             </div>
             <div class="metric p-3">
               <div class="small text-white-50">Ready to Play</div>
-              <div class="fs-4 fw-semibold">2</div>
+              <div class="fs-4 fw-semibold" id="metricReady" data-base="2">2</div>
             </div>
             <div class="metric p-3">
               <div class="small text-white-50">Drafts</div>
-              <div class="fs-4 fw-semibold">1</div>
+              <div class="fs-4 fw-semibold" id="metricDrafts" data-base="1">1</div>
             </div>
           </div>
         </div>
@@ -73,34 +76,48 @@
         <a href="CharacterCreation.html" class="btn btn-outline-dark" id="openCharacterCreationBtn">Open Character Creation</a>
       </div>
 
-      <div class="row g-4">
+      <div class="row g-4" id="characterGrid">
         <div class="col-md-6 col-xl-4">
           <article class="character-card h-100">
-            <div class="portrait">AS</div>
+            <div class="portrait">KV</div>
             <div class="p-4">
               <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
                 <div>
-                  <h3 class="h5 mb-1">Avery Stormborn</h3>
-                  <p class="text-secondary mb-0">Guardian of the Ashen Coast</p>
+                  <h3 class="h5 mb-1">Kratar Vatan</h3>
+                  <p class="text-secondary mb-0">Fanged Deserter of Sarkash</p>
                 </div>
                 <span class="badge text-bg-success-subtle text-success-emphasis">Ready</span>
               </div>
               <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="chip">Human</span>
-                <span class="chip">Blade Dance</span>
-                <span class="chip">STR 16</span>
+                <span class="chip">STR +3</span>
+                <span class="chip">Zweihänder</span>
+                <span class="chip">HP 14</span>
               </div>
-              <p class="text-secondary mb-4">Front-line defender built for short campaigns and heavy melee encounters.</p>
+              <p class="text-secondary mb-4">Illiterate brute with a parliament of teeth and a stolen scimitar caked in shit-ditch blood.</p>
               <div class="d-flex gap-2">
-                <button 
-                type="button" 
+                <button
+                type="button"
                 class="btn btn-dark btn-sm"
                 data-bs-toggle="modal"
                 data-bs-target="#characterModal"
-                data-name="Avery Stormborn"
-                data-role="Guardian of the Ashen Coast"
-                data-tags="Human, Blade Dance, STR 16"
-                data-description="Front-line defender built for short campaigns and heavy melee encounters."
+                data-name="Kratar Vatan"
+                data-class="Fanged Deserter of Sarkash"
+                data-description="Illiterate brute with a parliament of teeth and a stolen scimitar caked in shit-ditch blood."
+                data-hp-current="14"
+                data-hp-max="14"
+                data-strength="+3"
+                data-agility="0"
+                data-presence="-1"
+                data-toughness="+1"
+                data-omens-current="1"
+                data-omens-max="d2"
+                data-weapon1="Zweihänder d10"
+                data-weapon2="Bite d6"
+                data-armor-tier="1"
+                data-powers=""
+                data-equipment="Crumpled monster mask, Rope 30ft, Waterskin, Dried food (2 days), Torch, Femur"
+                data-silver="60"
+                data-miseries="0"
                 >View</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
               </div>
@@ -110,31 +127,45 @@
 
         <div class="col-md-6 col-xl-4">
           <article class="character-card h-100">
-            <div class="portrait">LM</div>
+            <div class="portrait">TB</div>
             <div class="p-4">
               <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
                 <div>
-                  <h3 class="h5 mb-1">Liora Mistvale</h3>
-                  <p class="text-secondary mb-0">Invoker from the Moon Archives</p>
+                  <h3 class="h5 mb-1">Theras Börda</h3>
+                  <p class="text-secondary mb-0">Heretical Priest of Galgenbeck</p>
                 </div>
                 <span class="badge text-bg-warning-subtle text-warning-emphasis">Draft</span>
               </div>
               <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="chip">Elf</span>
-                <span class="chip">Aegis Ward</span>
-                <span class="chip">INT 18</span>
+                <span class="chip">PRE +3</span>
+                <span class="chip">Sacred Scroll</span>
+                <span class="chip">Omens d4</span>
               </div>
-              <p class="text-secondary mb-4">Spell-focused support build with unfinished gear and story notes.</p>
+              <p class="text-secondary mb-4">Hunted by the Two-Headed Basilisks. Powers roll prepared but gear and scroll list still unfinished.</p>
               <div class="d-flex gap-2">
-                <button 
-                type="button" 
+                <button
+                type="button"
                 class="btn btn-dark btn-sm"
                 data-bs-toggle="modal"
                 data-bs-target="#characterModal"
-                data-name="Liora Mistvale"
-                data-role="Invoker from the Moon Archives"
-                data-tags="Elf, Aegis Ward, INT 18"
-                data-description="Spell-focused support build with unfinished gear and story notes."
+                data-name="Theras Börda"
+                data-class="Heretical Priest of Galgenbeck"
+                data-description="Hunted by the Two-Headed Basilisks. Powers roll prepared but gear and scroll list still unfinished."
+                data-hp-current="9"
+                data-hp-max="9"
+                data-strength="-1"
+                data-agility="0"
+                data-presence="+3"
+                data-toughness="+1"
+                data-omens-current="2"
+                data-omens-max="d4"
+                data-weapon1="Warhammer d6"
+                data-weapon2="—"
+                data-armor-tier="2"
+                data-powers="Grace of a Dead Saint, Whispers Pass the Gate, Foul Psychompomp"
+                data-equipment="Stolen Mitre, Wrong Jesus crucifix, Sacred scroll, Unclean scroll, Waterskin, Torch, Rope"
+                data-silver="110"
+                data-miseries="2"
                 >View</button>
                 <a href="CharacterCreation.html" class="btn btn-outline-secondary btn-sm">Continue Build</a>
               </div>
@@ -144,31 +175,45 @@
 
         <div class="col-md-6 col-xl-4">
           <article class="character-card h-100">
-            <div class="portrait">TK</div>
+            <div class="portrait">VW</div>
             <div class="p-4">
               <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
                 <div>
-                  <h3 class="h5 mb-1">Tarin Kest</h3>
-                  <p class="text-secondary mb-0">Ranger of the Hollow Pines</p>
+                  <h3 class="h5 mb-1">Vresi Wemut</h3>
+                  <p class="text-secondary mb-0">Occult Herbmaster of the Sarkash Dark</p>
                 </div>
                 <span class="badge text-bg-success-subtle text-success-emphasis">Ready</span>
               </div>
               <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="chip">Dwarf</span>
-                <span class="chip">Volley Shot</span>
-                <span class="chip">AGI 17</span>
+                <span class="chip">TGH +2</span>
+                <span class="chip">Portable Lab</span>
+                <span class="chip">AGI +1</span>
               </div>
-              <p class="text-secondary mb-4">Mobile ranged scout with exploration tools and a high-agility stat line.</p>
+              <p class="text-secondary mb-4">Born of the mushroom. Brews red poison, Elixir Vitalis, and Hyphos' enervating snuff on demand.</p>
               <div class="d-flex gap-2">
-                <button 
-                type="button" 
+                <button
+                type="button"
                 class="btn btn-dark btn-sm"
                 data-bs-toggle="modal"
                 data-bs-target="#characterModal"
-                data-name="Tarin Kest"
-                data-role="Ranger of the Hollow Pines"
-                data-tags="Dwarf, Volley Shot, AGI 17"
-                data-description="Mobile ranged scout with exploration tools and a high-agility stat line"
+                data-name="Vresi Wemut"
+                data-class="Occult Herbmaster of the Sarkash Dark"
+                data-description="Born of the mushroom. Brews red poison, Elixir Vitalis, and Hyphos' enervating snuff on demand."
+                data-hp-current="11"
+                data-hp-max="11"
+                data-strength="-2"
+                data-agility="+1"
+                data-presence="+1"
+                data-toughness="+2"
+                data-omens-current="1"
+                data-omens-max="d2"
+                data-weapon1="Knife d4"
+                data-weapon2="—"
+                data-armor-tier="1"
+                data-powers="Red Poison, Elixir Vitalis, Spider-Owl Soup"
+                data-equipment="Portable laboratory, Medicine box, Tent, Lantern oil, Waterskin, Sharp needle"
+                data-silver="40"
+                data-miseries="1"
                 >View</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
               </div>
@@ -179,17 +224,110 @@
     </section>
   </div>
   <div class="modal fade" id="characterModal" tabindex="-1" aria-labelledby="characterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-character-sheet modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title h5" id="characterModalLabel">Character Details</h2>
+          <h2 class="modal-title h5" id="characterModalLabel">Character Sheet</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p><strong>Name:</strong> <span id="modalCharacterName"></span></p>
-          <p><strong>Role:</strong> <span id="modalCharacterRole"></span></p>
-          <p><strong>Tags:</strong> <span id="modalCharacterTags"></span></p>
-          <p class="mb-0"><strong>Description:</strong> <span id="modalCharacterDescription"></span></p>
+          <div class="character-sheet">
+            <div class="cs-topbar">
+              <div class="cs-logo">MÖRK BORG</div>
+              <div class="cs-title">Character Sheet</div>
+            </div>
+
+            <div class="cs-grid">
+              <div>
+                <div class="cs-box">
+                  <div class="cs-label">Name</div>
+                  <div class="cs-value" data-sheet="name">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Description</div>
+                  <div class="cs-value" data-sheet="description">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Class</div>
+                  <div class="cs-value" data-sheet="class">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Origin</div>
+                  <div class="cs-value" data-sheet="homeland">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Powers <small>Presence + d4 per day</small></div>
+                  <ul class="cs-eq-list" data-sheet="powers"></ul>
+                </div>
+              </div>
+
+              <div>
+                <div class="cs-hp">
+                  <div class="cs-hp-label">Hit Points</div>
+                  <div class="cs-hp-skull" aria-hidden="true">&#9760;</div>
+                  <div class="cs-hp-values"><span data-sheet="hpCurrent">—</span> / <span data-sheet="hpMax">—</span></div>
+                  <div class="cs-hp-sub">Current / Max</div>
+                </div>
+                <div class="cs-abilities">
+                  <div class="cs-ability"><span class="cs-ability-label">Strength</span><span class="cs-ability-value" data-sheet="strength">—</span></div>
+                  <div class="cs-ability"><span class="cs-ability-label">Agility</span><span class="cs-ability-value" data-sheet="agility">—</span></div>
+                  <div class="cs-ability"><span class="cs-ability-label">Presence</span><span class="cs-ability-value" data-sheet="presence">—</span></div>
+                  <div class="cs-ability"><span class="cs-ability-label">Toughness</span><span class="cs-ability-value" data-sheet="toughness">—</span></div>
+                </div>
+                <div class="cs-omens">
+                  <div class="cs-label" style="justify-content:center;">Omens</div>
+                  <div class="cs-value"><span data-sheet="omensCurrent">—</span> / <span data-sheet="omensMax">—</span></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="cs-box">
+                  <div class="cs-label">Weapon</div>
+                  <div class="cs-value" data-sheet="weapon1">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Weapon</div>
+                  <div class="cs-value" data-sheet="weapon2">—</div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Armor</div>
+                  <div class="cs-armor-tiers" data-sheet="armor">
+                    <span class="cs-armor-tier" data-tier="1">1<small>-d2</small></span>
+                    <span class="cs-armor-tier" data-tier="2">2<small>-d4</small></span>
+                    <span class="cs-armor-tier" data-tier="3">3<small>-d6</small></span>
+                  </div>
+                </div>
+                <div class="cs-box">
+                  <div class="cs-label">Equipment <small>Str + 8 items</small></div>
+                  <ul class="cs-eq-list" data-sheet="equipment"></ul>
+                </div>
+                <div class="cs-footer">
+                  <div class="cs-silver">
+                    <div class="cs-label">Silver</div>
+                    <div class="cs-value"><span data-sheet="silver">—</span>s</div>
+                  </div>
+                  <div class="cs-miseries-wrap">
+                    <div class="cs-label">Miseries</div>
+                    <div class="cs-miseries-dots" data-sheet="miseries">
+                      <span data-misery="1">1</span>
+                      <span data-misery="2">2</span>
+                      <span data-misery="3">3</span>
+                      <span data-misery="4">4</span>
+                      <span data-misery="5">5</span>
+                      <span data-misery="6">6</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-readonly-note d-none" id="sheetReadonlyNote">— sample character · edits aren't saved —</div>
+
+            <div class="cs-reminders">
+              <div>Presence DR12 to wield a Power. Fail → -d2 HP and no Powers for 1 hr.</div>
+              <div>Omens: Max damage · Reroll · -d6 damage · DR -4 · No Crit/Fumble</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -199,19 +337,219 @@
 <script>
   const characterModal = document.getElementById("characterModal");
 
+  // Sheet text fields that can be edited and auto-saved back to localStorage.
+  // Maps sheet `data-sheet="..."` key → saved-character field key.
+  const EDITABLE_FIELDS = {
+    name: "name",
+    "class": "className",
+    homeland: "homeland",
+    description: "trait",
+    hpCurrent: "hp",
+    hpMax: "hpMax",
+    strength: "strength",
+    agility: "agility",
+    presence: "presence",
+    toughness: "toughness",
+    omensCurrent: "omen",
+    weapon1: "weapon1",
+    weapon2: "weapon2",
+    silver: "silver"
+  };
+
+  const INT_FIELDS = {
+    hp: true, hpMax: true, silver: true, omen: true,
+    strength: true, agility: true, presence: true, toughness: true,
+    armorTier: true, miseries: true
+  };
+
+  function populateSheet(button) {
+    const get = function (attr) {
+      const v = button.getAttribute(attr);
+      return (v === null || v === "") ? "—" : v;
+    };
+
+    const characterId = button.getAttribute("data-character-id") || "";
+    characterModal.setAttribute("data-character-id", characterId);
+    const editable = !!characterId;
+
+    const fields = {
+      name: "data-name",
+      "class": "data-class",
+      homeland: "data-homeland",
+      description: "data-description",
+      hpCurrent: "data-hp-current",
+      hpMax: "data-hp-max",
+      strength: "data-strength",
+      agility: "data-agility",
+      presence: "data-presence",
+      toughness: "data-toughness",
+      omensCurrent: "data-omens-current",
+      omensMax: "data-omens-max",
+      weapon1: "data-weapon1",
+      weapon2: "data-weapon2",
+      silver: "data-silver"
+    };
+
+    Object.keys(fields).forEach(function (key) {
+      const el = characterModal.querySelector('[data-sheet="' + key + '"]');
+      if (!el) return;
+      el.textContent = get(fields[key]);
+      // Toggle editable state (skip omensMax — it's derived from class)
+      const isEditableKey = EDITABLE_FIELDS.hasOwnProperty(key);
+      if (editable && isEditableKey) {
+        el.setAttribute("contenteditable", "plaintext-only");
+      } else {
+        el.removeAttribute("contenteditable");
+      }
+    });
+
+    // Powers list (display only for now)
+    const powersRaw = button.getAttribute("data-powers") || "";
+    const powersUl = characterModal.querySelector('[data-sheet="powers"]');
+    if (powersUl) {
+      powersUl.innerHTML = "";
+      const powers = powersRaw.split(",").map(function (p) { return p.trim(); }).filter(Boolean);
+      if (powers.length === 0) {
+        const li = document.createElement("li");
+        li.className = "is-empty";
+        li.textContent = "— no powers —";
+        powersUl.appendChild(li);
+      } else {
+        powers.forEach(function (p) {
+          const li = document.createElement("li");
+          li.textContent = p;
+          powersUl.appendChild(li);
+        });
+      }
+    }
+
+    // Equipment list (display only for now)
+    const equipRaw = button.getAttribute("data-equipment") || "";
+    const equipUl = characterModal.querySelector('[data-sheet="equipment"]');
+    if (equipUl) {
+      equipUl.innerHTML = "";
+      const items = equipRaw.split(",").map(function (e) { return e.trim(); }).filter(Boolean);
+      if (items.length === 0) {
+        const li = document.createElement("li");
+        li.className = "is-empty";
+        li.textContent = "— empty pack —";
+        equipUl.appendChild(li);
+      } else {
+        items.forEach(function (e) {
+          const li = document.createElement("li");
+          li.textContent = e;
+          equipUl.appendChild(li);
+        });
+      }
+    }
+
+    // Armor tier highlight + clickability
+    const armorTier = parseInt(button.getAttribute("data-armor-tier"), 10) || 0;
+    characterModal.querySelectorAll(".cs-armor-tier").forEach(function (tier) {
+      const t = parseInt(tier.getAttribute("data-tier"), 10);
+      tier.classList.toggle("is-active", t === armorTier);
+      tier.classList.toggle("is-clickable", editable);
+    });
+
+    // Miseries fill + clickability
+    const miseries = parseInt(button.getAttribute("data-miseries"), 10) || 0;
+    const miseriesContainer = characterModal.querySelector('.cs-miseries-dots');
+    if (miseriesContainer) {
+      miseriesContainer.classList.toggle("is-clickable", editable);
+    }
+    characterModal.querySelectorAll('.cs-miseries-dots span').forEach(function (dot) {
+      const n = parseInt(dot.getAttribute("data-misery"), 10);
+      dot.classList.toggle("is-active", n <= miseries);
+    });
+
+    // Read-only note for non-saved characters
+    const note = document.getElementById("sheetReadonlyNote");
+    if (note) note.classList.toggle("d-none", editable);
+  }
+
   characterModal.addEventListener("show.bs.modal", function (event) {
-    const button = event.relatedTarget;
-
-    const name = button.getAttribute("data-name");
-    const role = button.getAttribute("data-role");
-    const tags = button.getAttribute("data-tags");
-    const description = button.getAttribute("data-description");
-
-    document.getElementById("modalCharacterName").textContent = name;
-    document.getElementById("modalCharacterRole").textContent = role;
-    document.getElementById("modalCharacterTags").textContent = tags;
-    document.getElementById("modalCharacterDescription").textContent = description;
+    populateSheet(event.relatedTarget);
   });
+
+  // ----- Blur save: persist edits on contenteditable fields -----
+  characterModal.addEventListener("blur", function (event) {
+    const el = event.target;
+    if (!el || !el.getAttribute || !el.hasAttribute("data-sheet")) return;
+    if (el.getAttribute("contenteditable") !== "plaintext-only") return;
+    const characterId = characterModal.getAttribute("data-character-id");
+    if (!characterId) return;
+
+    const sheetKey = el.getAttribute("data-sheet");
+    const storageKey = EDITABLE_FIELDS[sheetKey];
+    if (!storageKey) return;
+
+    const rawValue = el.textContent.trim();
+    updateCharacterField(characterId, storageKey, rawValue);
+  }, true);
+
+  // ----- Click: armor tier and miseries dots -----
+  characterModal.addEventListener("click", function (event) {
+    const characterId = characterModal.getAttribute("data-character-id");
+    if (!characterId) return;
+
+    const tier = event.target.closest && event.target.closest(".cs-armor-tier.is-clickable");
+    if (tier) {
+      const t = parseInt(tier.getAttribute("data-tier"), 10);
+      const ch = findCharacter(characterId);
+      if (!ch) return;
+      const current = ch.armorTier || 0;
+      const next = (current === t) ? 0 : t;
+      ch.armorTier = next;
+      persistCharacter(ch);
+      characterModal.querySelectorAll(".cs-armor-tier").forEach(function (el) {
+        el.classList.toggle("is-active", parseInt(el.getAttribute("data-tier"), 10) === next);
+      });
+      return;
+    }
+
+    const dotTarget = event.target.closest && event.target.closest(".cs-miseries-dots.is-clickable span");
+    if (dotTarget) {
+      const n = parseInt(dotTarget.getAttribute("data-misery"), 10);
+      const ch = findCharacter(characterId);
+      if (!ch) return;
+      const current = ch.miseries || 0;
+      // Click the currently-highest active dot to decrement; otherwise set to n.
+      const next = (current === n) ? n - 1 : n;
+      ch.miseries = Math.max(0, Math.min(6, next));
+      persistCharacter(ch);
+      characterModal.querySelectorAll(".cs-miseries-dots span").forEach(function (el) {
+        const num = parseInt(el.getAttribute("data-misery"), 10);
+        el.classList.toggle("is-active", num <= ch.miseries);
+      });
+    }
+  });
+
+  function findCharacter(id) {
+    return loadSavedCharacters().find(function (c) { return c.id === id; });
+  }
+
+  function persistCharacter(ch) {
+    const saved = loadSavedCharacters();
+    const i = saved.findIndex(function (c) { return c.id === ch.id; });
+    if (i < 0) return;
+    saved[i] = ch;
+    saveCharacters(saved);
+  }
+
+  function updateCharacterField(id, storageKey, rawValue) {
+    const saved = loadSavedCharacters();
+    const i = saved.findIndex(function (c) { return c.id === id; });
+    if (i < 0) return;
+    const ch = saved[i];
+    if (INT_FIELDS[storageKey]) {
+      const n = parseInt(rawValue, 10);
+      ch[storageKey] = isNaN(n) ? 0 : n;
+    } else {
+      ch[storageKey] = rawValue;
+    }
+    saved[i] = ch;
+    saveCharacters(saved);
+  }
 
   // ADD THIS PART
   const creationAlert = document.getElementById("creationAlert");
@@ -232,6 +570,164 @@
       }, 900);
     });
   });
+
+  // ----- Saved characters: render from localStorage -----
+  function escHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function signed(n) {
+    const v = parseInt(n, 10) || 0;
+    return v >= 0 ? "+" + v : "" + v;
+  }
+
+  function initialsFrom(name) {
+    const parts = String(name || "").trim().split(/\s+/);
+    const letters = parts.map(function (p) { return p.charAt(0); }).join("");
+    return (letters || "??").slice(0, 2).toUpperCase();
+  }
+
+  function omensMaxFor(className) {
+    // Esoteric Hermit / Heretical Priest start with d4, others d2 (p.37 + per-class)
+    if (className === "Esoteric Hermit" || className === "Heretical Priest") return "d4";
+    return "d2";
+  }
+
+  function normalizeCharacter(c) {
+    // Backfill fields on older saves so the editable sheet works.
+    if (c.hpMax == null) c.hpMax = c.hp || 0;
+    if (c.weapon1 == null) c.weapon1 = "";
+    if (c.weapon2 == null) c.weapon2 = "";
+    if (c.armorTier == null) c.armorTier = 0;
+    if (!Array.isArray(c.powers)) c.powers = [];
+    if (!Array.isArray(c.equipment)) c.equipment = [];
+    if (c.miseries == null) c.miseries = 0;
+    return c;
+  }
+
+  function buildCardHtml(c) {
+    const initials = initialsFrom(c.name);
+    const subtitle = c.className || "—";
+    const description = c.trait || "No notes yet.";
+    const omensMax = omensMaxFor(c.className);
+    const powersStr = (c.powers || []).join(", ");
+    const equipmentStr = (c.equipment || []).join(", ");
+    const weapon1 = c.weapon1 || "—";
+    const weapon2 = c.weapon2 || "—";
+
+    return ''
+      + '<article class="character-card h-100">'
+      +   '<div class="portrait">' + escHtml(initials) + '</div>'
+      +   '<div class="p-4">'
+      +     '<div class="d-flex justify-content-between align-items-start gap-3 mb-3">'
+      +       '<div>'
+      +         '<h3 class="h5 mb-1">' + escHtml(c.name || "Unnamed") + '</h3>'
+      +         '<p class="text-secondary mb-0">' + escHtml(subtitle) + (c.homeland ? ' · ' + escHtml(c.homeland) : '') + '</p>'
+      +       '</div>'
+      +       '<span class="badge text-bg-success-subtle text-success-emphasis">Saved</span>'
+      +     '</div>'
+      +     '<div class="d-flex flex-wrap gap-2 mb-3">'
+      +       '<span class="chip">STR ' + escHtml(signed(c.strength)) + '</span>'
+      +       '<span class="chip">HP ' + escHtml(c.hp || 0) + '</span>'
+      +       '<span class="chip">' + escHtml(c.silver || 0) + 's</span>'
+      +     '</div>'
+      +     '<p class="text-secondary mb-4">' + escHtml(description) + '</p>'
+      +     '<div class="d-flex gap-2">'
+      +       '<button type="button" class="btn btn-dark btn-sm"'
+      +         ' data-bs-toggle="modal" data-bs-target="#characterModal"'
+      +         ' data-character-id="' + escHtml(c.id) + '"'
+      +         ' data-name="' + escHtml(c.name) + '"'
+      +         ' data-class="' + escHtml(c.className || "—") + '"'
+      +         ' data-homeland="' + escHtml(c.homeland || "—") + '"'
+      +         ' data-description="' + escHtml(description) + '"'
+      +         ' data-hp-current="' + escHtml(c.hp || 0) + '"'
+      +         ' data-hp-max="' + escHtml(c.hpMax || c.hp || 0) + '"'
+      +         ' data-strength="' + escHtml(signed(c.strength)) + '"'
+      +         ' data-agility="' + escHtml(signed(c.agility)) + '"'
+      +         ' data-presence="' + escHtml(signed(c.presence)) + '"'
+      +         ' data-toughness="' + escHtml(signed(c.toughness)) + '"'
+      +         ' data-omens-current="' + escHtml(c.omen || 0) + '"'
+      +         ' data-omens-max="' + escHtml(omensMax) + '"'
+      +         ' data-weapon1="' + escHtml(weapon1) + '"'
+      +         ' data-weapon2="' + escHtml(weapon2) + '"'
+      +         ' data-armor-tier="' + escHtml(c.armorTier || 0) + '"'
+      +         ' data-powers="' + escHtml(powersStr) + '"'
+      +         ' data-equipment="' + escHtml(equipmentStr) + '"'
+      +         ' data-silver="' + escHtml(c.silver || 0) + '"'
+      +         ' data-miseries="' + escHtml(c.miseries || 0) + '"'
+      +       '>View</button>'
+      +       '<button type="button" class="btn btn-outline-secondary btn-sm" data-delete-id="' + escHtml(c.id) + '">Delete</button>'
+      +     '</div>'
+      +   '</div>'
+      + '</article>';
+  }
+
+  function loadSavedCharacters() {
+    try { return JSON.parse(localStorage.getItem("mb.characters") || "[]"); }
+    catch (e) { return []; }
+  }
+
+  function saveCharacters(list) {
+    try { localStorage.setItem("mb.characters", JSON.stringify(list)); }
+    catch (e) { /* ignore */ }
+  }
+
+  function updateMetrics(savedCount) {
+    const metricCharacters = document.getElementById("metricCharacters");
+    const metricReady = document.getElementById("metricReady");
+    if (metricCharacters) {
+      metricCharacters.textContent = (parseInt(metricCharacters.getAttribute("data-base"), 10) || 0) + savedCount;
+    }
+    if (metricReady) {
+      metricReady.textContent = (parseInt(metricReady.getAttribute("data-base"), 10) || 0) + savedCount;
+    }
+  }
+
+  function renderSavedCharacters() {
+    const grid = document.getElementById("characterGrid");
+    if (!grid) return;
+    let saved = loadSavedCharacters();
+
+    // Backfill new fields on old saves and persist once
+    let mutated = false;
+    saved = saved.map(function (c) {
+      const before = JSON.stringify(c);
+      const after = normalizeCharacter(c);
+      if (JSON.stringify(after) !== before) mutated = true;
+      return after;
+    });
+    if (mutated) saveCharacters(saved);
+
+    // Remove any previously-rendered saved cards before re-rendering
+    grid.querySelectorAll('[data-saved-col="true"]').forEach(function (el) { el.remove(); });
+
+    saved.forEach(function (c) {
+      const col = document.createElement("div");
+      col.className = "col-md-6 col-xl-4";
+      col.setAttribute("data-saved-col", "true");
+      col.innerHTML = buildCardHtml(c);
+      grid.appendChild(col);
+    });
+
+    updateMetrics(saved.length);
+  }
+
+  document.getElementById("characterGrid").addEventListener("click", function (event) {
+    const btn = event.target.closest("[data-delete-id]");
+    if (!btn) return;
+    const id = btn.getAttribute("data-delete-id");
+    if (!window.confirm("Delete this character? This cannot be undone.")) return;
+    const saved = loadSavedCharacters().filter(function (c) { return c.id !== id; });
+    saveCharacters(saved);
+    renderSavedCharacters();
+  });
+
+  renderSavedCharacters();
 </script>
 </body>
 </html>

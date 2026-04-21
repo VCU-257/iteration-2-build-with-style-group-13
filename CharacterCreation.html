@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Character Creation</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Rubik+Mono+One&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -12,7 +15,7 @@
     <header class="topbar rounded-5 px-3 px-lg-4 py-3 mb-4 mb-lg-5">
       <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 justify-content-between">
         <div class="d-flex align-items-center gap-3">
-          <div class="brand-mark">CP</div>
+          <div class="brand-mark">CF</div>
           <div>
             <p class="text-uppercase small mb-1 text-secondary">Campaign Forge</p>
             <h1 class="h3 mb-0">Character Creation</h1>
@@ -60,7 +63,12 @@
           <div class="row g-3">
             <div class="col-md-6">
               <label for="characterName" class="form-label">Character Name</label>
-              <input type="text" class="form-control" id="characterName" placeholder="Gutter Saint" required>
+              <small class="text-muted d-block mb-1">Roll from the names table (p.2) or type your own</small>
+              <div class="input-group">
+                <input type="text" class="form-control" id="characterName" placeholder="Gutter Saint" required>
+                <button type="button" class="btn btn-roll" id="rollName" title="Roll d6 × d8 names">Roll</button>
+              </div>
+              <div class="roll-result" id="nameResult"></div>
             </div>
             <div class="col-md-6">
               <label for="className" class="form-label">Class</label>
@@ -70,44 +78,107 @@
                 <option>Gutterborn Scum</option>
                 <option>Esoteric Hermit</option>
                 <option>Wretched Royalty</option>
+                <option>Heretical Priest</option>
+                <option>Occult Herbmaster</option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="homeland" class="form-label">Origin</label>
-              <input type="text" class="form-control" id="homeland" placeholder="Bergen Chrypt" required>
+              <small class="text-muted d-block mb-1">Select a class first to roll on its table (p.46+)</small>
+              <div class="input-group">
+                <input type="text" class="form-control" id="homeland" placeholder="Bergen Chrypt" required>
+                <button type="button" class="btn btn-roll" id="rollOrigin" title="Roll class-specific origin">Roll</button>
+              </div>
+              <div class="roll-result" id="originResult"></div>
             </div>
-            <div class="col-md-4">
-              <label for="trait" class="form-label">Notable Trait</label>
-              <input type="text" class="form-control" id="trait" placeholder="Nervous eyes" required>
+            <div class="col-md-6">
+              <label for="omen" class="form-label">Omens</label>
+              <small class="text-muted d-block mb-1">d2 default — d4 for Esoteric Hermit / Heretical Priest</small>
+              <div class="input-group">
+                <input type="number" class="form-control" id="omen" placeholder="0">
+                <button type="button" class="btn btn-roll" id="rollOmen" title="Roll omens">Roll</button>
+              </div>
+              <div class="roll-result" id="omenResult"></div>
             </div>
-            <div class="col-md-4">
-              <label for="omen" class="form-label">Omen</label>
-              <small class="text-muted d-block mb-1">Optional</small>
-              <input type="number" class="form-control" id="omen" placeholder="0">
+            <div class="col-12">
+              <label for="trait" class="form-label">Traits & Quirks <small class="text-muted ms-2">optional — roll or type</small></label>
+              <small class="text-muted d-block mb-2">Roll from Terrible Traits (p.38), Bad Habits (p.40), or Broken Bodies (p.39). Rolled lines append to the text below.</small>
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <button type="button" class="btn btn-roll btn-sm" id="rollTerribleTrait" title="Roll d20 Terrible Trait">+ Terrible Trait</button>
+                <button type="button" class="btn btn-roll btn-sm" id="rollBadHabit" title="Roll d20 Bad Habit">+ Bad Habit</button>
+                <button type="button" class="btn btn-roll btn-sm" id="rollBrokenBody" title="Roll d20 Broken Body">+ Broken Body</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="clearTrait">Clear</button>
+              </div>
+              <textarea class="form-control" id="trait" rows="3" placeholder="e.g. Endlessly aggravated. Covered in blasphemous tattoos. Won't use a blade without testing it on your own flesh."></textarea>
             </div>
           </div>
         </div>
       </div>
 
       <div class="builder-card mb-4">
-        <div class="card-header px-4 py-3">Abilities</div>
+        <div class="card-header px-4 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <span>Abilities — roll 3d6 per p.27</span>
+          <button type="button" class="btn btn-roll btn-roll-all" id="rollAllAbilities">Roll All</button>
+        </div>
         <div class="card-body p-4">
           <div class="row g-3">
             <div class="col-sm-6 col-lg-3">
               <label for="strength" class="form-label">Strength</label>
-              <input type="number" class="form-control" id="strength" placeholder="0" required>
+              <div class="input-group">
+                <input type="number" class="form-control" id="strength" placeholder="0" min="-3" max="6" required>
+                <button type="button" class="btn btn-roll" id="rollStrength" title="Roll 3d6 → Strength">Roll</button>
+              </div>
+              <div class="roll-result" id="strengthResult"></div>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="agility" class="form-label">Agility</label>
-              <input type="number" class="form-control" id="agility" placeholder="0"required>
+              <div class="input-group">
+                <input type="number" class="form-control" id="agility" placeholder="0" min="-3" max="6" required>
+                <button type="button" class="btn btn-roll" id="rollAgility" title="Roll 3d6 → Agility">Roll</button>
+              </div>
+              <div class="roll-result" id="agilityResult"></div>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="presence" class="form-label">Presence</label>
-              <input type="number" class="form-control" id="presence" placeholder="0" required>
+              <div class="input-group">
+                <input type="number" class="form-control" id="presence" placeholder="0" min="-3" max="6" required>
+                <button type="button" class="btn btn-roll" id="rollPresence" title="Roll 3d6 → Presence">Roll</button>
+              </div>
+              <div class="roll-result" id="presenceResult"></div>
             </div>
             <div class="col-sm-6 col-lg-3">
               <label for="toughness" class="form-label">Toughness</label>
-              <input type="number" class="form-control" id="toughness" placeholder="0" required>
+              <div class="input-group">
+                <input type="number" class="form-control" id="toughness" placeholder="0" min="-3" max="6" required>
+                <button type="button" class="btn btn-roll" id="rollToughness" title="Roll 3d6 → Toughness">Roll</button>
+              </div>
+              <div class="roll-result" id="toughnessResult"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="builder-card mb-4">
+        <div class="card-header px-4 py-3">Resources</div>
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="hp" class="form-label">Hit Points</label>
+              <small class="text-muted d-block mb-1">Toughness + d8 (min 1) — p.29</small>
+              <div class="input-group">
+                <input type="number" class="form-control" id="hp" placeholder="0" min="1">
+                <button type="button" class="btn btn-roll" id="rollHp" title="Roll Toughness + d8">Roll</button>
+              </div>
+              <div class="roll-result" id="hpResult"></div>
+            </div>
+            <div class="col-sm-6">
+              <label for="silver" class="form-label">Silver</label>
+              <small class="text-muted d-block mb-1">2d6 × 10s starting purse — p.21</small>
+              <div class="input-group">
+                <input type="number" class="form-control" id="silver" placeholder="0" min="0">
+                <button type="button" class="btn btn-roll" id="rollSilver" title="Roll 2d6 × 10">Roll</button>
+              </div>
+              <div class="roll-result" id="silverResult"></div>
             </div>
           </div>
         </div>
@@ -120,9 +191,115 @@
     </form>
   </div>
 
+  <script src="script.js"></script>
   <script>
     const form = document.getElementById("characterForm");
     const formMessage = document.getElementById("formMessage");
+
+    function numberOrZero(id) {
+      const el = document.getElementById(id);
+      if (!el || el.value === "") return 0;
+      const n = parseInt(el.value, 10);
+      return isNaN(n) ? 0 : n;
+    }
+
+    function valueOr(id, fallback) {
+      const el = document.getElementById(id);
+      return el && el.value ? el.value : (fallback || "");
+    }
+
+    function setInputValue(id, value) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.value = value;
+        el.classList.add("rolling");
+        setTimeout(function () { el.classList.remove("rolling"); }, 250);
+      }
+    }
+
+    function appendToTrait(line) {
+      const ta = document.getElementById("trait");
+      if (!ta) return;
+      const current = ta.value.trim();
+      ta.value = current ? (current + "\n" + line) : line;
+    }
+
+    function showRollResult(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    // ---- Wire up new rollers (requires window.MB from script.js) ----
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.MB) return;
+
+      const rollName = document.getElementById("rollName");
+      if (rollName) rollName.addEventListener("click", function () {
+        const n = window.MB.rollName();
+        setInputValue("characterName", n);
+        showRollResult("nameResult", "rolled " + n);
+      });
+
+      const rollOrigin = document.getElementById("rollOrigin");
+      if (rollOrigin) rollOrigin.addEventListener("click", function () {
+        const cls = document.getElementById("className").value || "";
+        const o = window.MB.rollOrigin(cls);
+        setInputValue("homeland", o);
+        showRollResult("originResult", cls ? "rolled from " + cls : "no class — rolled random");
+      });
+
+      const rollT = document.getElementById("rollTerribleTrait");
+      if (rollT) rollT.addEventListener("click", function () {
+        appendToTrait("Terrible: " + window.MB.rollTerribleTrait());
+      });
+
+      const rollB = document.getElementById("rollBadHabit");
+      if (rollB) rollB.addEventListener("click", function () {
+        appendToTrait("Habit: " + window.MB.rollBadHabit());
+      });
+
+      const rollBB = document.getElementById("rollBrokenBody");
+      if (rollBB) rollBB.addEventListener("click", function () {
+        appendToTrait("Body: " + window.MB.rollBrokenBody());
+      });
+
+      const clearTrait = document.getElementById("clearTrait");
+      if (clearTrait) clearTrait.addEventListener("click", function () {
+        document.getElementById("trait").value = "";
+      });
+    });
+
+    function saveCharacter() {
+      const hp = numberOrZero("hp");
+      const character = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        createdAt: new Date().toISOString(),
+        name: valueOr("characterName"),
+        className: valueOr("className"),
+        homeland: valueOr("homeland"),
+        trait: valueOr("trait"),
+        omen: numberOrZero("omen"),
+        strength: numberOrZero("strength"),
+        agility: numberOrZero("agility"),
+        presence: numberOrZero("presence"),
+        toughness: numberOrZero("toughness"),
+        hp: hp,
+        hpMax: hp,
+        silver: numberOrZero("silver"),
+        // Editable-on-sheet defaults:
+        weapon1: "",
+        weapon2: "",
+        armorTier: 0,
+        powers: [],
+        equipment: [],
+        miseries: 0
+      };
+      try {
+        const saved = JSON.parse(localStorage.getItem("mb.characters") || "[]");
+        saved.push(character);
+        localStorage.setItem("mb.characters", JSON.stringify(saved));
+      } catch (e) { /* ignore: private mode / quota */ }
+    }
 
     form.addEventListener("submit", function (event) {
       if (!form.checkValidity()) {
@@ -133,7 +310,9 @@
         formMessage.classList.add("alert-danger");
 
         form.reportValidity();
+        return;
       }
+      saveCharacter();
     });
   </script>
 </body>
