@@ -24,7 +24,7 @@ The hardest part was adding a lot of new behavior without breaking the team's ex
 
 ## 4. AI / LLM Usage
 * **What I asked the AI:**
-I asked LLMs a lot of general question especially when scripting and making dice and tables and save systems as I wanted the character creator to work and function nicely while also looking nice for the user.
+I asked LLMs a lot of general questions especially when scripting and making dice and tables and save systems as I wanted the character creator to work and function nicely while also looking nice for the user.
 * **How it helped & What I learned:**
 It seriously simplified complex subjects for me as I came in a little out of my element at first.
 
