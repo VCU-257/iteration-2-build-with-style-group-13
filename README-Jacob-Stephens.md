@@ -24,7 +24,7 @@ On CharacterCreation.html, I used Bootstrap form controls and the grid system to
 
 The hardest part of my assigned work was organizing the character feature into multiple connected screens while keeping the layout responsive and easy to follow. I had to make sure the library page, creation page, and success page felt like one flow instead of three unrelated screens.
 
-I solved that by separating responsibilities across the pages and using Bootstrap's grid and spacing utilities to keep each screen structured. I also reused the same navigation and visual pattern across the character pages so the user could move through the flow without confusion.
+I solved that by separating responsibilities across the pages and using Bootstrap's grid and spacing utilities to keep each screen structured. I also reused the same navigation and visual pattern across the character pages so the user could move through the flow without confusion
 
 ## 4. AI / LLM Usage
 
