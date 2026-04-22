@@ -8,16 +8,15 @@
   --mb-pink-dark: #b80078;
   --mb-blood: #a60000;
   --mb-bone: #e8e3d5;
-  --mb-bone-dim: #9d9889;
-  --mb-muted: #565248;
+  --mb-bone-dim: #c2bcad;
+  --mb-muted: #8a8477;
   --mb-border: #252525;
   --mb-border-strong: #3a3a3a;
 
-  --font-blackletter: "UnifrakturCook", "UnifrakturMaguntia", "Times New Roman", serif;
-  --font-display: "Rubik Mono One", "Impact", "Arial Black", sans-serif;
-  --font-body: "Special Elite", "Courier New", monospace;
-  /* "Peste" is not on Google Fonts; Metal Mania is the closest brushed/grime display face */
-  --font-peste: "Metal Mania", "UnifrakturCook", "Impact", sans-serif;
+  --font-blackletter: "Cinzel", "Times New Roman", serif;
+  --font-display: "Cinzel", "Arial", serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-peste: "Cinzel", "Times New Roman", serif;
 }
 
 * {
@@ -35,6 +34,8 @@ body {
   font-family: var(--font-body);
   min-height: 100vh;
   letter-spacing: 0.01em;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -42,8 +43,8 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-blackletter);
   color: var(--mb-bone);
   font-weight: 700;
-  letter-spacing: 0.015em;
-  line-height: 1.05;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
 }
 
 .display-5 {
@@ -56,7 +57,7 @@ h1, h2, h3, h4, h5, h6,
   font-size: 3rem;
 }
 
-p { line-height: 1.55; }
+p { line-height: 1.65; }
 
 .text-uppercase {
   font-family: var(--font-display);
@@ -248,9 +249,9 @@ p.text-uppercase.small.text-secondary {
 .hero h2.display-5,
 .page-hero h2.display-5 {
   font-family: var(--font-peste);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  line-height: 1.05;
+  line-height: 1.1;
   text-shadow: none;
 }
 
@@ -387,10 +388,10 @@ p.text-uppercase.small.text-secondary {
 .form-label {
   font-family: var(--font-display);
   color: var(--mb-yellow);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .form-control,
@@ -401,9 +402,11 @@ textarea {
   background-color: var(--mb-black);
   color: var(--mb-bone);
   font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.form-control::placeholder { color: var(--mb-muted); }
+.form-control::placeholder { color: var(--mb-bone-dim); }
 
 .form-control:focus,
 .form-select:focus,
@@ -454,10 +457,10 @@ textarea:focus {
 .btn {
   border-radius: 0;
   font-family: var(--font-display);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1rem;
   border-width: 2px;
   transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
 }
@@ -530,7 +533,7 @@ textarea:focus {
 }
 
 .btn-roll {
-  background: var(--mb-pink);
+  background: var(--mb-yellow);
   color: var(--mb-black);
   border: 2px solid var(--mb-black);
   padding: 0.25rem 0.7rem;
@@ -541,11 +544,11 @@ textarea:focus {
 
 .btn-roll:hover,
 .btn-roll:focus {
-  background: var(--mb-yellow);
+  background: var(--mb-pink);
   color: var(--mb-black);
   border-color: var(--mb-black);
   transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 var(--mb-pink);
+  box-shadow: 2px 2px 0 var(--mb-yellow);
 }
 
 .btn-roll-all {
